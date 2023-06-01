@@ -8,10 +8,14 @@ class Lampa {
         this.#allapot = allapot;
         this.#divElem = $(`<div id="${id}"></div>`);
         this.#divElem.addClass("kor");
-        
-        this.#divElem.addClass(this.#allapot === true ? "sarga" : "zold");
+        this.#szinBeallit();
         console.log(this.#divElem);
         szuloELEM.append(this.#divElem);
+        this.#divElem.on("click", () =>{
+            this.#allapot != this.#allapot;
+            this.#szinBeallit();
+            this.#kattintasTrigger();
+        });
     }
 
 
@@ -22,7 +26,7 @@ class Lampa {
     }
 
     #szinBeallit() {
-
+        this.#divElem.addClass(this.#allapot === true ? "sarga" : "zold");
 
     }
 

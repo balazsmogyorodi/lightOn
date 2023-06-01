@@ -57,7 +57,7 @@ class JatekTer {
 
   #randomizalo() {
     const lampaMeghatarozo = Math.floor(Math.random() * 11);
-    if (lampaMeghatarozo > 5) {
+    if (lampaMeghatarozo > 8) {
       return true;
     } else {
       return false;
