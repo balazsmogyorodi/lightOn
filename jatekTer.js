@@ -4,11 +4,32 @@ class JatekTer {
   #allapotLista;
   #meret;
   #lepes;
+  #valtoztat = false;
 
   constructor() {
     this.#allapotLista = [];
     this.#db = 0;
     this.#lepes = 0;
+    this.#init();
+    const szuloElem = $(".ujra");
+    szuloElem.on("click", () => {
+      this.#valtoztat = true;
+      this.#init();
+    });
+  }
+
+  #setAllapotLista() { }
+
+  #szomszedokKeresese() { }
+
+  #init() {
+    const szuloElem = $("article");
+    if (this.#valtoztat) {
+      szuloElem.empty();
+      for (let index = 0; index < 9; index++) {
+        this.#allapotLista.splice(this.#allapotLista);
+      }
+    }
     for (let index = 0; index < 9; index++) {
       this.#allapotLista.push(this.#randomizalo());
     }
@@ -16,18 +37,11 @@ class JatekTer {
     this.#setAllapotLista();
     this.#ellenorzes();
     console.log(this.#db);
-    this.#init();
-  }
-
-  #setAllapotLista() {}
-
-  #szomszedokKeresese() {}
-
-  #init() {
-    const szuloElem = $("article");
+    
     for (let index = 0; index < this.#allapotLista.length; index++) {
-      new Lampa(index, szuloElem, this.#allapotLista[index]);
+      new Lampa(index, this.#allapotLista[index], szuloElem);
     }
+    this.#valtoztat = false;
   }
 
   #ellenorzes() {
@@ -41,13 +55,13 @@ class JatekTer {
     }
   }
 
-  #randomizalo(){
-   const lampaMeghatarozo = Math.floor(Math.random() * 11);
-   if (lampaMeghatarozo > 5){
-    return true;
-   } else {
-    return false;
-   }
+  #randomizalo() {
+    const lampaMeghatarozo = Math.floor(Math.random() * 11);
+    if (lampaMeghatarozo > 5) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
